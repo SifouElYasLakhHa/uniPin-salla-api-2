@@ -1,0 +1,36 @@
+{
+  "name": "moogold-salla-api",
+  "version": "1.0.0",
+  "description": "moogold-salla-api",
+  "main": "moogoldSallaApi.js",
+  "scripts": {
+    "start": "nodemon moogoldSallaApi.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SifouElYasLakhHa/moogold-salla-api.git"
+  },
+  "keywords": [
+    "moogold-salla-api"
+  ],
+  "author": "Seif Elislam Hanancha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SifouElYasLakhHa/moogold-salla-api/issues"
+  },
+  "homepage": "https://github.com/SifouElYasLakhHa/moogold-salla-api#readme",
+  "dependencies": {
+    "@salla.sa/passport-strategy": "^1.0.6",
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "mongoose": "^6.5.0",
+    "passport": "^0.6.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
