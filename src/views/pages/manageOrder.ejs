@@ -38,7 +38,7 @@
                         htmlDenominationsContent += `<option value="${d.id}">${d.name}</option>`;
                     }
                     $('#diamonds').text(htmlDenominationsContent);
-                    $('#diamonds').show();
+                    
                     for(var f of response.gameDetails.fields) {
                         htmlServerContent += `<option value="${f.type}">${f.name}</option>`;
                         if(f.type === 'dropdown') {
@@ -46,7 +46,7 @@
                         }
                     }
                     $('#typeOrder').text(htmlServerContent);
-                    $('.game:eq(0)').show();
+                    
                     //fields
                 } else {
                     $('#gameError').text(response.error.message);
@@ -62,7 +62,7 @@
                 }
 
                 $('#server').text(htmlServerContent);
-                $('#server').show();
+                
 
             }
         });
