@@ -33,21 +33,23 @@ exports.hashPasswordUser = async (user) => await new Promise((resolve, reject) =
 
 exports.getGameDetailsUniPinApi = async (game) => await new Promise(async (resolve, reject) => {
     try {
-        var hash256Response = await hash256('in-game-topup/detail').then((rs) => rs);
+        var url = 'in-game-topup/detail'
+        var hash256Response = await hash256(url).then((rs) => rs);
+        console.log(hash256Response)
         if(hash256Response.status === false) throw new Error(error.message);
         hash256Response = hash256Response.hash256;
 
         var data = {
             game_code: game.gameCode,
         };
-
+        console.log()
         var config = {
             method: 'post',
-            url: process.env.UNIPIN_API_URL,
+            url: `${process.env.UNIPIN_API_URL}'/'${url}`,
             headers: { 
                 'partnerid': process.env.UNIPIN_PARTNER_ID, 
                 'timestamp': hash256Response.timestamp, 
-                'path': 'in-game-topup/detail', 
+                'path': url, 
                 'auth': hash256Response.hash256, 
                 'Content-Type': 'application/json'
             },
