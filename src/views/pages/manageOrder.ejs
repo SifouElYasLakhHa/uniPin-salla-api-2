@@ -20,15 +20,13 @@
         $('#gameName').change(function() {
             var gameCode = $('#gameName').val();
             var settings = {
-                "url": `${host}/admin/game/views`,
+                "url": `${host}/admin/game/views?gameCode=${gameCode}`,
                 "method": "GET",
                 "timeout": 0,
                 "headers": {
                     "Content-Type": "application/json"
                 },
-                "data": {
-                    gameCode,
-                },
+                "data": {},
             };
 
             $.ajax(settings).done(function (response) {
@@ -62,7 +60,7 @@
                 for(var f of fields) {
                     htmlServerContent += `<option value="${f.value}">${f.name}</option>`;
                 }
-                
+
                 $('#server').text(htmlServerContent);
                 $('#server').show();
 

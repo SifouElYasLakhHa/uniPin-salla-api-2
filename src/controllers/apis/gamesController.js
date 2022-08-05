@@ -7,7 +7,9 @@ const {
 
 exports.gameDetailsUniPin = async (req, res) => {
     try {
-        const { gameCode } = req.body;
+        const { gameCode } = req.query;
+        console.log(gameCode);
+        return
         const getGameDetailsUniPinApiResponse = await getGameDetailsUniPinApi({ gameCode }).then((rs) => rs);
         if(getGameDetailsUniPinApiResponse.status === false) throw new Error(getGameDetailsUniPinApiResponse.error.message);
         return res.status(200).json({
