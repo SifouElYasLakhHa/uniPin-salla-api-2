@@ -1,33 +1,33 @@
 {
-  "name": "moogold-salla-api",
+  "name": "uniPin-salla-api",
   "version": "1.0.0",
-  "description": "moogold-salla-api",
-  "main": "moogoldSallaApi.js",
+  "description": "uniPin-salla-api",
+  "main": "uniPinSallaApi.js",
   "scripts": {
-    "start": "nodemon moogoldSallaApi.js"
+    "start": "nodemon uniPinSallaApi.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SifouElYasLakhHa/moogold-salla-api.git"
+    "url": "git+https://github.com/SifouElYasLakhHa/uniPin-salla-api-2.git"
   },
   "keywords": [
-    "moogold-salla-api"
+    "uniPin-salla-api"
   ],
   "author": "Seif Elislam Hanancha",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SifouElYasLakhHa/moogold-salla-api/issues"
+    "url": "https://github.com/SifouElYasLakhHa/uniPin-salla-api-2/issues"
   },
-  "homepage": "https://github.com/SifouElYasLakhHa/moogold-salla-api#readme",
+  "homepage": "https://github.com/SifouElYasLakhHa/uniPin-salla-api-2#readme",
   "dependencies": {
-    "@salla.sa/passport-strategy": "^1.0.6",
     "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
     "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "email-validator": "^2.0.4",
     "express": "^4.18.1",
-    "express-session": "^1.17.3",
     "mongoose": "^6.5.0",
-    "passport": "^0.6.0",
     "path": "^0.12.7"
   },
   "devDependencies": {
