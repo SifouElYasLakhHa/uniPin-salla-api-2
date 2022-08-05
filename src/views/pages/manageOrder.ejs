@@ -17,7 +17,11 @@
     <script>
         var host = '<%- host %>';
         var fields = [];
+        var type = 0;
         $('#gameName').change(function() {
+            $('#server').empty();
+            $('#typeOrder').empty();
+            $('#diamonds').empty();
             var gameCode = $('#gameName').val();
             var settings = {
                 "url": `${host}/admin/game/views?gameCode=${gameCode}`,
@@ -42,28 +46,45 @@
                         htmlDenominationsContent += '</option>';
                         //`<option value="${d.id}">${d.name}</option>`;
                     }
-                    $('#diamonds').empty();
+                    
                     $('#diamonds').append(htmlDenominationsContent);
                     
                     for(var f of response.gameDetails.fields) {
-                        htmlServerContent += '<option value="' 
+                        /*htmlServerContent += '<option value="' 
                         htmlServerContent +=  f.type;
                         htmlServerContent += '">';
                         htmlServerContent += f.name;
-                        htmlServerContent += '</option>';
+                        htmlServerContent += '</option>';*/
                         if(f.type === 'dropdown') {
                             fields = f.data;
+                            type = 1;
                         }
                     }
-                    $('#typeOrder').empty();
-                    $('#typeOrder').append(htmlServerContent);
+                    if(type === 1) {
+                        var htmlServerContent = '<option value="">اختيار السرفر</option>';
+                        for(var f of fields) {
+                            htmlServerContent += '<option value="';
+                            htmlServerContent += f.type;
+                            htmlServerContent += '">';
+                            htmlServerContent += f.name;
+                            htmlServerContent += '</option>';
+                        }
+                        $('#server').empty();
+                        $('#server').append(htmlServerContent);
+                        $('.zoneID').hide();
+                        $('.server').show();
+                    } else {
+                        $('.zoneID').show();
+                        $('.server').hide();
+                    }
+                    //$('#typeOrder').append(htmlServerContent);
                     //fields
                 } else {
                     $('#gameError').text(response.error.message);
                 }
             });
         });
-        $('#typeOrder').change(function() {
+        /*$('#typeOrder').change(function() {
             var typeOrder = $('#typeOrder').val();
             if(typeOrder === 'dropdown') {
                 var htmlServerContent = '<option value="">اختيار السرفر</option>';
@@ -73,14 +94,11 @@
                     htmlServerContent += '">';
                     htmlServerContent += f.name;
                     htmlServerContent += '</option>';
-                    
-                    //+ f.type + '">' + f.name + '</option>';
-                    //`<option value="${f.value}">${f.name}</option>`;
                 }
                 $('#server').empty();
                 $('#server').append(htmlServerContent);
             }
-        });
+        });*/
     </script>
 </body>
 <!-- END: Body-->
