@@ -42,6 +42,7 @@
                         htmlDenominationsContent += '</option>';
                         //`<option value="${d.id}">${d.name}</option>`;
                     }
+                    $('#diamonds').empty();
                     $('#diamonds').append(htmlDenominationsContent);
                     
                     for(var f of response.gameDetails.fields) {
@@ -54,6 +55,7 @@
                             fields = f.data;
                         }
                     }
+                    $('#typeOrder').empty();
                     $('#typeOrder').append(htmlServerContent);
                     //fields
                 } else {
@@ -75,6 +77,7 @@
                     //+ f.type + '">' + f.name + '</option>';
                     //`<option value="${f.value}">${f.name}</option>`;
                 }
+                $('#server').empty();
                 $('#server').append(htmlServerContent);
             }
         });
