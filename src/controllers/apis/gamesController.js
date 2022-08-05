@@ -8,11 +8,11 @@ const {
 exports.gameDetailsUniPin = async (req, res) => {
     try {
         const { gameCode } = req.body;
-        const getGameDetailsUniPinApiResponst = await getGameDetailsUniPinApi({ gameCode }).then((rs) => rs);
-        if(getGameDetailsUniPinApiResponst.status === false) throw new Error(getGameDetailsUniPinApiResponst.error.message);
+        const getGameDetailsUniPinApiResponse = await getGameDetailsUniPinApi({ gameCode }).then((rs) => rs);
+        if(getGameDetailsUniPinApiResponse.status === false) throw new Error(getGameDetailsUniPinApiResponse.error.message);
         return res.status(200).json({
             status: true,
-            gameDetails: getGameDetailsUniPinApiResponst.gameDetails
+            gameDetails: getGameDetailsUniPinApiResponse.gameDetails
         })
     } catch (e) {
         console.log(e)
