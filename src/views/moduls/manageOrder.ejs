@@ -1,0 +1,52 @@
+<!-- BEGIN: Content-->
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+                <!-- profile -->
+                <div class="card">
+                <div class="card-header border-bottom">
+                    <h4 class="card-title">اظافة طلب جديد</h4>
+                </div>
+                <div class="card-body py-2 my-25">
+
+                    <!-- form -->
+                    <form class="validate-form mt-2 pt-50">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 mb-1">
+                                <label class="form-label" for="game">اللعبة</label>
+                                <select id="gameName" class="select2 form-select">
+                                    <option value="">اختيار اللعبة</option>
+                                    <option value="لعبة">لعبة</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 mb-1 game" style="display: none;">
+                                <label class="form-label" for="server">السرفر</label>
+                                <select id="server" class="select2 form-select">
+                                    <option value="">اختيار السرفر</option>
+                                    <option value="السرفر">السرفر</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 mb-1 game" style="display: none;">
+                                <label class="form-label" for="ID">ID</label>
+                                <input type="text" class="form-control" id="gameId" name="firstName" placeholder="John" value="John" data-msg="Please enter first name" />
+                            </div>
+                            <div class="col-12 col-sm-6 mb-1 game" style="display: none;">
+                                <label class="form-label" for="Diamonds">Diamonds</label>
+                                <input type="text" class="form-control" id="gameDiamonds" name="firstName" placeholder="John" value="John" data-msg="Please enter first name" />
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary mt-1 me-1">حفظ</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!--/ form -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: Content-->

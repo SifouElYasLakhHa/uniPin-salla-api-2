@@ -87,6 +87,57 @@ exports.getGameDetailsUniPinApi = async (game) => await new Promise(async (resol
 
 
 
+exports.getGamesUniPinApi = async () => await new Promise(async (resolve, reject) => {
+    try {
+        var url = 'in-game-topup/list'
+        var hash256Response = await hash256(url).then((rs) => rs);
+        console.log(hash256Response)
+        if(hash256Response.status === false) throw new Error(error.message);
+        hash256Response = hash256Response.hash256;
+
+        var data = {};
+
+        var config = {
+            method: 'post',
+            url: `${process.env.UNIPIN_API_URL}/${url}`,
+            headers: { 
+                'partnerid': process.env.UNIPIN_PARTNER_ID, 
+                'timestamp': hash256Response.timestamp, 
+                'path': url, 
+                'auth': hash256Response.hash256, 
+                'Content-Type': 'application/json'
+            },
+            data : data
+        };
+
+        axios(config)
+        .then(function (response) {
+            resolve({
+                status: true,
+                games: response.data,
+            });
+        })
+        .catch(function (e) {
+            resolve({
+                status: false,
+                error: {
+                    status: true,
+                    message: e,
+                },
+            });
+        });
+
+    } catch (e) {
+        resolve({
+            status: false,
+            error: {
+                status: true,
+                message: e,
+            },
+        });
+    }
+});
+
 const hash256 = async (url) => await new Promise((resolve, reject) => {
     try {
         var config = {

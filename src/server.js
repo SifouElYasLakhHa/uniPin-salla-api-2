@@ -25,16 +25,18 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, './../public')));
 app.set('view engine', 'ejs');
 
-const authRoutes = require('./routes/apis/authRoutes');
-const loginRoutes = require('./routes/pages/loginRoutes');
-const gamesRoutes = require('./routes/apis/gamesRoutes');
-const dashboardRoutes = require('./routes/pages/dashboardRoutes');
+const authRoutesApi = require('./routes/apis/authRoutes');
+const loginRoutesPage = require('./routes/pages/loginRoutes');
+const gamesRoutesApi = require('./routes/apis/gamesRoutes');
+const dashboardRoutesPage = require('./routes/pages/dashboardRoutes');
+const gamesRoutesPage = require('./routes/pages/gamesRoutes');
 
-app.use('/auth', authRoutes);
+app.use('/auth', authRoutesApi);
 app.use('/admin', 
-  loginRoutes,
-  gamesRoutes,
-  dashboardRoutes,
+  loginRoutesPage,
+  gamesRoutesApi,
+  dashboardRoutesPage,
+  gamesRoutesPage,
   );
 
 module.exports = app;
