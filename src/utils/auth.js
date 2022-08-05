@@ -42,10 +42,10 @@ exports.getGameDetailsUniPinApi = async (game) => await new Promise(async (resol
         var data = {
             game_code: game.gameCode,
         };
-        console.log(`${process.env.UNIPIN_API_URL}'/'${url}`)
+        console.log(`${process.env.UNIPIN_API_URL}/${url}`)
         var config = {
             method: 'post',
-            url: `${process.env.UNIPIN_API_URL}'/'${url}`,
+            url: `${process.env.UNIPIN_API_URL}/${url}`,
             headers: { 
                 'partnerid': process.env.UNIPIN_PARTNER_ID, 
                 'timestamp': hash256Response.timestamp, 
