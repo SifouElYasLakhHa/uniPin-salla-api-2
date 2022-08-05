@@ -23,15 +23,19 @@
                                     <% for(var i = 0; i < games.length; i++) { %>
                                         <option value="<%- games[i].game_code %>"><%- games[i].game_name %></option>
                                     <% } %>
-
-                                    
+                                </select>
+                                <label class="form-label" for="game" id="gameError" style="color: red;"></label>
+                            </div>
+                            <div class="col-12 col-sm-6 mb-1 game" style="display: none;">
+                                <label class="form-label" for="server">طريقة الشحن</label>
+                                <select id="typeOrder" class="select2 form-select">
+                                    <option value="">اختيار طريقة الحشن</option>
                                 </select>
                             </div>
                             <div class="col-12 col-sm-6 mb-1 game" style="display: none;">
                                 <label class="form-label" for="server">السرفر</label>
                                 <select id="server" class="select2 form-select">
                                     <option value="">اختيار السرفر</option>
-                                    <option value="السرفر">السرفر</option>
                                 </select>
                             </div>
                             <div class="col-12 col-sm-6 mb-1 game" style="display: none;">
@@ -40,7 +44,9 @@
                             </div>
                             <div class="col-12 col-sm-6 mb-1 game" style="display: none;">
                                 <label class="form-label" for="Diamonds">Diamonds</label>
-                                <input type="text" class="form-control" id="gameDiamonds" name="firstName" placeholder="John" value="John" data-msg="Please enter first name" />
+                                <select id="diamonds" class="select2 form-select">
+                                    <option value="">Choose Diamonds</option>
+                                </select>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary mt-1 me-1">حفظ</button>

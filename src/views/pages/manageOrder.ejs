@@ -15,9 +15,57 @@
     <%- include('../partials/footer.ejs'); %>
     <%- include('../partials/authFooter.ejs'); %>
     <script>
+        var host = '<%- host %>';
+        var fields = [];
         $('#gameName').change(function() {
-            alert('hi')
-        })
+            var gameCode = $('#gameName').val();
+            var settings = {
+                "url": `${host}/admin/game/views`,
+                "method": "GET",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": {
+                    gameCode,
+                },
+            };
+
+            $.ajax(settings).done(function (response) {
+                if(response.status === true) {
+                    $('#gameError').text();
+                    var htmlServerContent = '';
+                    var htmlDenominationsContent = '';
+                    for(var d of response.gameDetails.denominations) {
+                        htmlDenominationsContent += `<option value="${d.id}">${d.name}</option>`;
+                    }
+                    $('#diamonds').text(htmlDenominationsContent);
+                    $('#diamonds').show();
+                    for(var f of response.gameDetails.fields) {
+                        htmlServerContent += `<option value="${f.type}">${f.name}</option>`;
+                        if(f.type === 'dropdown') {
+                            fields = f.data;
+                        }
+                    }
+                    $('#typeOrder').text(htmlServerContent);
+                    $('#typeOrder').show();
+                    //fields
+                } else {
+                    $('#gameError').text(response.error.message);
+                }
+            });
+        });
+        $('#typeOrder').change(function() {
+            var typeOrder = $('#typeOrder').val();
+            if(typeOrder === 'dropdown') {
+                var htmlServerContent = '';
+                for(var f of fields) {
+                    htmlServerContent += `<option value="${f.value}">${f.name}</option>`;
+                }
+                $('#server').text(htmlServerContent);
+                $('#server').show();
+            }
+        });
     </script>
 </body>
 <!-- END: Body-->
