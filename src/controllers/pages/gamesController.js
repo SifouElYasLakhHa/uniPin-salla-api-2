@@ -6,12 +6,13 @@ const {
 exports.orderAddPage = async (req, res) => {
     try {
         var getGamesUniPinApiResponse = await getGamesUniPinApi().then((rs) => rs);
-        console.log(getGamesUniPinApiResponse)
+        if(getGamesUniPinApiResponse.status === false) throw new Error(getGamesUniPinApiResponse.error.message);
+        //console.log(getGamesUniPinApiResponse)
         return res.render('pages/manageOrder', {
             mainTitle: process.env.APP_NAME,
             host: process.env.HOST,
             subTitle: 'اظافة طلب جديد',
-            games: getGamesUniPinApiResponse.games,
+            games: getGamesUniPinApiResponse.games.game_list,
         });
     } catch (e) {
         console.log(e)

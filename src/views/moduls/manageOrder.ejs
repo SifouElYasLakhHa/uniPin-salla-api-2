@@ -20,7 +20,11 @@
                                 <label class="form-label" for="game">اللعبة</label>
                                 <select id="gameName" class="select2 form-select">
                                     <option value="">اختيار اللعبة</option>
-                                    <option value="لعبة">لعبة</option>
+                                    <% for(var i = 0; i < games.length; i++) { %>
+                                        <option value="<%- games[i].game_code %>"><%- games[i].game_name %></option>
+                                    <% } %>
+
+                                    
                                 </select>
                             </div>
                             <div class="col-12 col-sm-6 mb-1 game" style="display: none;">
