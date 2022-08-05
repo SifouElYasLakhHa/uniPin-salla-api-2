@@ -28,11 +28,13 @@ app.set('view engine', 'ejs');
 const authRoutes = require('./routes/apis/authRoutes');
 const loginRoutes = require('./routes/pages/loginRoutes');
 const gamesRoutes = require('./routes/apis/gamesRoutes');
+const dashboardRoutes = require('./routes/pages/dashboardRoutes');
 
 app.use('/auth', authRoutes);
 app.use('/admin', 
   loginRoutes,
   gamesRoutes,
+  dashboardRoutes,
   );
 
 module.exports = app;

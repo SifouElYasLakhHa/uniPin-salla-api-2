@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const {
     dashboardPage,
-} = require("../controllers/dashboardController");
+} = require("../../controllers/pages/dashboardController");
 
 router.get("/dashboard", dashboardPage);
 
