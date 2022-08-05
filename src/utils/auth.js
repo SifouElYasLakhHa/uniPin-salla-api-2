@@ -42,7 +42,7 @@ exports.getGameDetailsUniPinApi = async (game) => await new Promise(async (resol
         var data = {
             game_code: game.gameCode,
         };
-        console.log()
+        console.log(`${process.env.UNIPIN_API_URL}'/'${url}`)
         var config = {
             method: 'post',
             url: `${process.env.UNIPIN_API_URL}'/'${url}`,
@@ -101,21 +101,23 @@ const hash256 = async (url) => await new Promise((resolve, reject) => {
             });
         })
         .catch(function (e) {
+            console.log(e)
             resolve({
                 status: false,
                 error: {
                     status: true,
-                    message: e,
+                    message: 'Hash not success',
                 },
             });
         });
 
     } catch (e) {
+        console.log('test1')
         resolve({
             status: false,
             error: {
                 status: true,
-                message: e,
+                message: 'Hash not success',
             },
         });
     }
