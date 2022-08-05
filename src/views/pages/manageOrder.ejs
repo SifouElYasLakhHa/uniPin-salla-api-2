@@ -32,21 +32,29 @@
             $.ajax(settings).done(function (response) {
                 if(response.status === true) {
                     $('#gameError').text();
-                    var htmlServerContent = '';
+                    var htmlServerContent = '<option value="">اختيار طريقة الحشن</option>';
                     var htmlDenominationsContent = '';
                     for(var d of response.gameDetails.denominations) {
-                        htmlDenominationsContent += `<option value="${d.id}">${d.name}</option>`;
+                        htmlDenominationsContent += '<option value="';
+                        htmlDenominationsContent += d.id;
+                        htmlDenominationsContent += '">';
+                        htmlDenominationsContent += d.name;
+                        htmlDenominationsContent += '</option>';
+                        //`<option value="${d.id}">${d.name}</option>`;
                     }
                     $('#diamonds').text(htmlDenominationsContent);
                     
                     for(var f of response.gameDetails.fields) {
-                        htmlServerContent += `<option value="${f.type}">${f.name}</option>`;
+                        htmlServerContent += '<option value="' 
+                        htmlServerContent +=  f.type;
+                        htmlServerContent += '">';
+                        htmlServerContent += f.name;
+                        htmlServerContent += '</option>';
                         if(f.type === 'dropdown') {
                             fields = f.data;
                         }
                     }
                     $('#typeOrder').text(htmlServerContent);
-                    
                     //fields
                 } else {
                     $('#gameError').text(response.error.message);
@@ -56,14 +64,18 @@
         $('#typeOrder').change(function() {
             var typeOrder = $('#typeOrder').val();
             if(typeOrder === 'dropdown') {
-                var htmlServerContent = '';
+                var htmlServerContent = '<option value="">اختيار السرفر</option>';
                 for(var f of fields) {
-                    htmlServerContent += `<option value="${f.value}">${f.name}</option>`;
+                    htmlServerContent += '<option value="';
+                    htmlServerContent += f.type;
+                    htmlServerContent += '">';
+                    htmlServerContent += f.name;
+                    htmlServerContent += '</option>';
+                    
+                    //+ f.type + '">' + f.name + '</option>';
+                    //`<option value="${f.value}">${f.name}</option>`;
                 }
-
                 $('#server').text(htmlServerContent);
-                
-
             }
         });
     </script>
