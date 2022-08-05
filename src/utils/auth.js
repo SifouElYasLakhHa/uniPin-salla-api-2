@@ -43,9 +43,9 @@ exports.getGameDetailsUniPinApi = async (game) => await new Promise(async (resol
 
         var config = {
             method: 'post',
-            url: process.env.UNIOIN_API_URL,
+            url: process.env.UNIPIN_API_URL,
             headers: { 
-                'partnerid': process.env.UNIOIN_PARTNER_ID, 
+                'partnerid': process.env.UNIPIN_PARTNER_ID, 
                 'timestamp': hash256Response.timestamp, 
                 'path': 'in-game-topup/detail', 
                 'auth': hash256Response.hash256, 
