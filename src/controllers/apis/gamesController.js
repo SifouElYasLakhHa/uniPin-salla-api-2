@@ -31,14 +31,33 @@ exports.gameDetailsUniPin = async (req, res) => {
 
 exports.validateUserUniPin = async (req, res) => {
     try {
-        const { gameCode } = req.query;
-        //console.log(gameCode);
-        //return
-        const getGameDetailsUniPinApiResponse = await getGameDetailsUniPinApi({ gameCode }).then((rs) => rs);
-        if(getGameDetailsUniPinApiResponse.status === false) throw new Error(getGameDetailsUniPinApiResponse.error.message);
+        const { gameCode, zoneId, serverId, type, userId} = req.query;
+        var data = {
+            fields: {
+            }
+        };
+        if(Number(type) === 1) {
+            data = {
+                game_code: gameCode,
+                fields: {
+                    userid: userId,
+                    server: serverId,
+                }
+            };
+        } else {
+            data = {
+                game_code: gameCode,
+                fields: {
+                    userid: userId,
+                    zoneid: zoneId,
+                }
+            };
+        }
+        const validateUserUniPinApiResponse = await validateUserUniPinApi(data).then((rs) => rs);
+        if(validateUserUniPinApiResponse.status === false) throw new Error(validateUserUniPinApiResponse.error.message);
         return res.status(200).json({
             status: true,
-            gameDetails: getGameDetailsUniPinApiResponse.gameDetails
+            validationToken: validateUserUniPinApiResponse.validation_token
         })
     } catch (e) {
         console.log(e)

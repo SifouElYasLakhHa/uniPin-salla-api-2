@@ -138,15 +138,13 @@ exports.getGamesUniPinApi = async () => await new Promise(async (resolve, reject
     }
 });
 
-exports.validateUserUniPinApi = async () => await new Promise(async (resolve, reject) => {
+exports.validateUserUniPinApi = async (data) => await new Promise(async (resolve, reject) => {
     try {
         var url = 'in-game-topup/user/validate'
         var hash256Response = await hash256(url).then((rs) => rs);
-        //console.log(hash256Response)
+
         if(hash256Response.status === false) throw new Error(error.message);
         hash256Response = hash256Response.hash256;
-
-        var data = {};
 
         var config = {
             method: 'post',
@@ -158,11 +156,12 @@ exports.validateUserUniPinApi = async () => await new Promise(async (resolve, re
                 'auth': hash256Response.hash256, 
                 'Content-Type': 'application/json'
             },
-            data : data
+            data: data
         };
-
+        
         axios(config)
         .then(function (response) {
+            console.log(response.data);
             resolve({
                 status: true,
                 games: response.data,
@@ -177,7 +176,6 @@ exports.validateUserUniPinApi = async () => await new Promise(async (resolve, re
                 },
             });
         });
-
     } catch (e) {
         resolve({
             status: false,
