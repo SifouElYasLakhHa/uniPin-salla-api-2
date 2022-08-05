@@ -6,6 +6,7 @@ const {
 exports.orderAddPage = async (req, res) => {
     try {
         var getGamesUniPinApiResponse = await getGamesUniPinApi().then((rs) => rs);
+        console.log(getGamesUniPinApiResponse)
         return res.render('pages/manageOrder', {
             mainTitle: process.env.APP_NAME,
             host: process.env.HOST,
