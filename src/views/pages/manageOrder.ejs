@@ -73,9 +73,12 @@
                         $('#server').append(htmlServerContent);
                         $('.zoneID').hide();
                         $('.server').show();
+                        $('#addOrder').attr('type', '2');
+                        //2
                     } else {
                         $('.zoneID').show();
                         $('.server').hide();
+                        $('#addOrder').attr('type', '1');
                     }
                     //$('#typeOrder').append(htmlServerContent);
                     //fields
@@ -99,6 +102,58 @@
                 $('#server').append(htmlServerContent);
             }
         });*/
+        $('#addOrder').click(function() {
+            var type =  $('#addOrder').attr('type'); 
+            var strRequest = '';
+            var userID = $('#userId').val();
+            var gameName = $('#gameName').val();
+            if(type === 1) {
+                var server = $('#server').val();
+                strRequest = `?gameCode=${gameName}&server=${server}&userId=${userID}`;
+            } else {
+                var zoneId = $('#zoneId').val();
+                strRequest = `?gameCode=${gameName}&userId=${userId}&zoneId=${zoneId}`;
+            }
+            var settings = {
+                "url": `${host}/admin/user/validate${strRequest}`,
+                "method": "POST",
+                "timeout": 0,
+            };
+
+            $.ajax(settings).done(function (response) {
+                if(response.status === false) {
+                    $('#error_full').text(response.errors.message);
+                } else {
+                    $('#error_full').text();
+                    var settings = {
+                        "url": `${host}/admin/order/add?gameCode=${gameName}&validationToke=${response.validationToken}&denominationId=${$('#diamonds').val()}`,
+                        "method": "POST",
+                        "timeout": 0,
+                        "headers": {
+                            "Content-Type": "application/json"
+                        },
+                        "data": {
+                            "userId": userID,
+                            "gameCode": gameName,
+                            "type": type,
+                            "denominationId": $('#diamonds').val()
+                        },
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        if(response.status === false) {
+                            $('#error_full').text(response.errors.message);
+                        } else {
+                            $('#error_full').text('Success');
+                            $('#userId').val('');
+                            $('#zoneId').val('');
+                            window.location.reload();
+                        }
+                    })
+                }
+                //console.log(response);
+            });
+        })
     </script>
 </body>
 <!-- END: Body-->

@@ -140,6 +140,68 @@ exports.getGamesUniPinApi = async () => await new Promise(async (resolve, reject
     }
 });
 
+exports.createOrderUniPinApi = async (data) => await new Promise(async (resolve, reject) => {
+    try {
+        var url = 'in-game-topup/order/create'
+        var hash256Response = await hash256(url).then((rs) => rs);
+
+        if(hash256Response.status === false) throw new Error(error.message);
+        hash256Response = hash256Response.hash256;
+        //console.log(data)
+        var config = {
+            method: 'post',
+            url: `${process.env.UNIPIN_API_URL}/${url}`,
+            headers: {
+                'partnerid': process.env.UNIPIN_PARTNER_ID, 
+                'timestamp': hash256Response.timestamp, 
+                'path': url, 
+                'auth': hash256Response.hash256, 
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+        
+        axios(config)
+        .then(function (response) {
+           // console.log(response.data.error.message);
+            if(response.data.status === 1) {
+                //response.data.error.message
+                resolve({
+                    status: true,
+                    order: response.data,
+                });
+            } else {
+                resolve({
+                    status: false,
+                    error: {
+                        staus: true,
+                        message: response.data.error.message,
+                    }
+                });
+            }
+            
+        })
+        .catch(function (e) {
+            resolve({
+                status: false,
+                error: {
+                    status: true,
+                    message: e,
+                },
+            });
+        });
+    } catch (e) {
+        resolve({
+            status: false,
+            error: {
+                status: true,
+                message: e,
+            },
+        });
+    }
+});
+
+
 exports.validateUserUniPinApi = async (data) => await new Promise(async (resolve, reject) => {
     try {
         var url = 'in-game-topup/user/validate'
