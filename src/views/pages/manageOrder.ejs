@@ -105,13 +105,48 @@
         $('#addOrder').click(function() {
             var type =  $('#addOrder').attr('type'); 
             var strRequest = '';
-            var userID = $('#userId').val();
+            var userId = $('#userId').val();
             var gameName = $('#gameName').val();
+            var diamondsGame = $('#diamonds').val();
+
+            if(gameName){
+                $('#gameError').text('Required');
+                issues = true;
+            } else {
+                $('#gameError').text('');
+            }
+
+            if(diamondsGame === ''){
+                $('#diamonds_error').text('Required');
+                issues = true;
+            } else {
+                $('#diamonds_error').text('');
+            }
+
+            if(!userId){
+                $('#id_error').text('Required');
+                issues = true;
+            } else {
+                $('#id_error').text('');
+            }
+
             if(type === 1) {
                 var server = $('#server').val();
-                strRequest = `?gameCode=${gameName}&server=${server}&userId=${userID}`;
+                if(server === '') {
+                    $('#server_error').text('Required');
+                    issues = true;
+                } else {
+                    $('#server_error').text('');
+                }
+                strRequest = `?gameCode=${gameName}&server=${server}&userId=${userId}`;
             } else {
                 var zoneId = $('#zoneId').val();
+                if(!zoneId) {
+                    $('#zone_id_error').text('Required');
+                    issues = true;
+                } else {
+                    $('#zone_id_error').text('');
+                }
                 strRequest = `?gameCode=${gameName}&userId=${userId}&zoneId=${zoneId}`;
             }
             var settings = {
@@ -126,7 +161,7 @@
                 } else {
                     $('#error_full').text();
                     var settings = {
-                        "url": `${host}/admin/order/add?gameCode=${gameName}&validationToke=${response.validationToken}&denominationId=${$('#diamonds').val()}`,
+                        "url": `${host}/admin/order/add?gameCode=${gameName}&validationToke=${response.validationToken}&denominationId=${diamondsGame}`,
                         "method": "POST",
                         "timeout": 0,
                         "headers": {

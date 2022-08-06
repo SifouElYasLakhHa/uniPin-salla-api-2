@@ -36,24 +36,27 @@
 
                             <div class="col-12 col-sm-6 mb-1 zoneID">
                                 <label class="form-label" for="Zone ID"> Zone ID</label>
-                                <input type="text" class="form-control" id="zoneId" placeholder="" value="" data-msg="Please enter Game id" required/>
+                                <input type="text" class="form-control" id="zoneId" placeholder="" value="" data-msg="Please enter Game id"/>
+                                <label class="form-label" for="zone_id_error" style="color: red;"></label>
                             </div>
 
                             <div class="col-12 col-sm-6 mb-1 server">
                                 <label class="form-label" for="server">السرفر</label>
-                                <select id="server" class="select2 form-select" required>
-                                    
+                                <select id="server" class="select2 form-select">
                                 </select>
+                                <label class="form-label" for="server_error" style="color: red;"></label>
                             </div>
                             <div class="col-12 col-sm-6 mb-1">
                                 <label class="form-label" for="ID">ID</label>
-                                <input type="text" class="form-control" id="userId" placeholder="" value="" data-msg="Please enter Game id" required/>
+                                <input type="text" class="form-control" id="userId" placeholder="" value="" data-msg="Please enter Game id"/>
+                                <label class="form-label" for="id_error" style="color: red;"></label>
                             </div>
                             <div class="col-12 col-sm-6 mb-1">
                                 <label class="form-label" for="Diamonds">Diamonds</label>
-                                <select id="diamonds" class="select2 form-select" required>
+                                <select id="diamonds" class="select2 form-select">
                                     <option value="">Choose Diamonds</option>
                                 </select>
+                                <label class="form-label" for="diamonds_error" style="color: red;"></label>
                             </div>
                             <div class="col-12">
                                 <button type="button" class="btn btn-primary mt-1 me-1" id="addOrder">اظافة طلب</button>
