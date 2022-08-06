@@ -1,4 +1,5 @@
 
+const e = require('express');
 const db = require('./../../moduls/index.js');
 
 const { 
@@ -49,16 +50,26 @@ exports.validateUserUniPin = async (req, res) => {
                 game_code: gameCode,
                 fields: {
                     userid: userId,
-                    zoneid: zoneId,
+                    zoneid: Number(zoneId),
                 }
             };
         }
         const validateUserUniPinApiResponse = await validateUserUniPinApi(data).then((rs) => rs);
-        if(validateUserUniPinApiResponse.status === false) throw new Error(validateUserUniPinApiResponse.error.message);
-        return res.status(200).json({
-            status: true,
-            validationToken: validateUserUniPinApiResponse.validation_token
-        })
+        console.log(validateUserUniPinApiResponse)
+        if(validateUserUniPinApiResponse.status === false) {
+            return res.status(200).json({
+                status: false,
+                errors: {
+                    status: true,
+                    message: validateUserUniPinApiResponse.error.message
+                }
+            })
+        } else {
+            return res.status(200).json({
+                status: true,
+                validationToken: validateUserUniPinApiResponse.games.validation_token
+            });
+        }
     } catch (e) {
         console.log(e)
         return res.status(200).json({

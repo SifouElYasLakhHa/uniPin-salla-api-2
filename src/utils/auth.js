@@ -112,6 +112,8 @@ exports.getGamesUniPinApi = async () => await new Promise(async (resolve, reject
 
         axios(config)
         .then(function (response) {
+            //console.log(response.data.status)
+           // if(response.data.status !== 1) throw new Error(response.data.error.message);
             resolve({
                 status: true,
                 games: response.data,
@@ -145,7 +147,7 @@ exports.validateUserUniPinApi = async (data) => await new Promise(async (resolve
 
         if(hash256Response.status === false) throw new Error(error.message);
         hash256Response = hash256Response.hash256;
-
+        console.log(data)
         var config = {
             method: 'post',
             url: `${process.env.UNIPIN_API_URL}/${url}`,
@@ -161,11 +163,23 @@ exports.validateUserUniPinApi = async (data) => await new Promise(async (resolve
         
         axios(config)
         .then(function (response) {
-            console.log(response.data);
-            resolve({
-                status: true,
-                games: response.data,
-            });
+           // console.log(response.data.error.message);
+            if(response.data.status === 1) {
+                //response.data.error.message
+                resolve({
+                    status: true,
+                    games: response.data,
+                });
+            } else {
+                resolve({
+                    status: false,
+                    error: {
+                        staus: true,
+                        message: response.data.error.message,
+                    }
+                });
+            }
+            
         })
         .catch(function (e) {
             resolve({
