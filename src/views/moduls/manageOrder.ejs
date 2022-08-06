@@ -18,7 +18,7 @@
                         <div class="row">
                             <div class="col-12 col-sm-6 mb-1">
                                 <label class="form-label" for="game">اللعبة</label>
-                                <select id="gameName" class="select2 form-select">
+                                <select id="gameName" class="select2 form-select" required>
                                     <option value="">اختيار اللعبة</option>
                                     <% for(var i = 0; i < games.length; i++) { %>
                                         <option value="<%- games[i].game_code %>"><%- games[i].game_name %></option>
@@ -36,22 +36,22 @@
 
                             <div class="col-12 col-sm-6 mb-1 zoneID">
                                 <label class="form-label" for="Zone ID"> Zone ID</label>
-                                <input type="text" class="form-control" id="zoneId" placeholder="" value="" data-msg="Please enter Game id" />
+                                <input type="text" class="form-control" id="zoneId" placeholder="" value="" data-msg="Please enter Game id" required/>
                             </div>
 
                             <div class="col-12 col-sm-6 mb-1 server">
                                 <label class="form-label" for="server">السرفر</label>
-                                <select id="server" class="select2 form-select">
+                                <select id="server" class="select2 form-select" required>
                                     
                                 </select>
                             </div>
                             <div class="col-12 col-sm-6 mb-1">
                                 <label class="form-label" for="ID">ID</label>
-                                <input type="text" class="form-control" id="userId" placeholder="" value="" data-msg="Please enter Game id" />
+                                <input type="text" class="form-control" id="userId" placeholder="" value="" data-msg="Please enter Game id" required/>
                             </div>
                             <div class="col-12 col-sm-6 mb-1">
                                 <label class="form-label" for="Diamonds">Diamonds</label>
-                                <select id="diamonds" class="select2 form-select">
+                                <select id="diamonds" class="select2 form-select" required>
                                     <option value="">Choose Diamonds</option>
                                 </select>
                             </div>
