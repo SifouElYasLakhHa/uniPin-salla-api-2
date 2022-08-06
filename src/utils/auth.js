@@ -303,7 +303,7 @@ const hash256 = async (url) => await new Promise((resolve, reject) => {
     try {
         var config = {
             method: 'get',
-            url: `${process.env.HASH_HOST}/?url=${url}`,
+            url: `${process.env.HASH_HOST}/?url=${url}&guid=${process.env.UNIPIN_PARTNER_ID}&password=${process.env.UNIPIN_PARTNER_SECRET}`,
         };
         axios(config)
         .then(function (response) {
