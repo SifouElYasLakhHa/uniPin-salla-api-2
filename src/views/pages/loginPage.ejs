@@ -23,7 +23,7 @@
                         <!-- Login basic -->
                         <div class="card mb-0">
                             <div class="card-body">
-                                <a href="index.html" class="brand-logo">
+                                <a href="#" class="brand-logo">
                                     <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="28">
                                         <defs>
                                             <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
@@ -47,29 +47,34 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <h2 class="brand-text text-primary ms-1">Twitter Bot</h2>
+                                    <h2 class="brand-text text-primary ms-1"><%- mainTitle %></h2>
                                 </a>
 
                                 <h4 class="card-title mb-1">مرحبا بك! 👋</h4>
-                                <form class="auth-login-form mt-2" action="<% host %>/admin/dashboard" method="GET">
+                                <form class="auth-login-form mt-2">
                                     <div class="mb-1">
-                                        <label for="login-email" class="form-label">الايمايل</label>
-                                        <input type="text" class="form-control" value="john@example.com" id="login-email" name="login-email" placeholder="john@example.com" aria-describedby="login-email" tabindex="1" autofocus />
+                                        <label for="login-auth" class="form-label">الايمايل او اسم المستخدم</label>
+                                        <input type="text" class="form-control" value="" id="login-auth" placeholder="sifouamra@gmail.com" aria-describedby="login-email" tabindex="1" autofocus />
+                                        <label for="login-auth" class="form-label" id="login-auth-error" style="color: red;"></label>
                                     </div>
 
                                     <div class="mb-1">
                                         <div class="d-flex justify-content-between">
                                             <label class="form-label" for="login-password">كلمة المرور</label>
-                                            <a href="#">
+                                            <!--<a href="#">
                                                 <small>نسيت كلمة المرور?</small>
-                                            </a>
+                                            </a>-->
                                         </div>
                                         <div class="input-group input-group-merge form-password-toggle">
-                                            <input type="password" value="**********" class="form-control form-control-merge" id="login-password" name="login-password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
+                                            <input type="password" value="" class="form-control form-control-merge" id="login-password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
                                             <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                         </div>
+                                        <label for="login-password" class="form-label" id="login-password-error" style="color: red;"></label>
+
                                     </div>
-                                    <button class="btn btn-primary w-100" tabindex="4">تسجيل الدخول</button>
+                                    <label for="auth" class="form-label" id="auth-error" style="color: red;"></label>
+
+                                    <button type="button" class="btn btn-primary w-100" tabindex="4" id="login-btn">تسجيل الدخول</button>
                                 </form>
                             </div>
                         </div>
@@ -82,6 +87,40 @@
     </div>
     <!-- END: Content-->
     <%- include('../partials/notAuthFooter.ejs'); %>
+    <script>
+        $('#login-btn').click(function() {
+            var loginAuth = $('#login-auth').val();
+            var loginPassword = $('#login-password').val();
+            var error = false;
+            if(!loginAuth) {
+                $('#login-auth-error').text('Required');
+                error = true;
+            }
+
+            if(!loginPassword) {
+                $('#login-password-error').text('Required');
+                error = true;
+            }
+            if(error === true) return;
+            var settings = {
+                "url": `<%- host %>/api/auth/login`,
+                "method": "POST",
+                "timeout": 0,
+                "data": {
+                    auth: loginAuth,
+                    password: loginPassword
+                },
+            };
+
+            $.ajax(settings).done(function (response) {
+                if(response.status === true) {
+                    window.location.href = '/admin/dashboard'
+                } else {
+                    $('#auth-error').text(response.errors.message);
+                }
+            });
+        })
+    </script>
 </body>
 <!-- END: Body-->
 

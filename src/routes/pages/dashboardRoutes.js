@@ -4,7 +4,10 @@ const router = express.Router();
 const {
     dashboardPage,
 } = require("../../controllers/pages/dashboardController");
+const {
+    authLogin,
+} = require("../../utils/auth");
 
-router.get("/dashboard", dashboardPage);
+router.get("/dashboard", authLogin, dashboardPage);
 
 module.exports = router;

@@ -6,9 +6,12 @@ const {
     validateUserUniPin,
     createOrderUniPin,
 } = require("../../controllers/apis/gamesController");
+const {
+    authLogin,
+} = require("../../utils/auth");
 
-router.get("/game/views", gameDetailsUniPin);
-router.post("/user/validate", validateUserUniPin);
-router.post("/order/create", createOrderUniPin);
+router.get("/game/views", authLogin, gameDetailsUniPin);
+router.post("/user/validate", authLogin, validateUserUniPin);
+router.post("/order/create", authLogin, createOrderUniPin);
 
 module.exports = router;

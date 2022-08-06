@@ -68,10 +68,7 @@ exports.loginApi = async (req, res) => {
             error: true,
             errors: {
               status: false,
-              all: {
-                status: true,
-                message: 'كلمة المرور او اسم المستخدم غير صحيح'
-              }
+              message: 'كلمة المرور او اسم المستخدم غير صحيح'
             },
           });
         } else {
@@ -82,10 +79,7 @@ exports.loginApi = async (req, res) => {
               status: false,
               errors: {
                 status: false,
-                all: {
-                  status: true,
-                  message: 'كلمة المرور او اسم المستخدم غير صحيح'
-                }
+                message: 'كلمة المرور او اسم المستخدم غير صحيح'
               },
             });
           }
@@ -111,10 +105,7 @@ exports.loginApi = async (req, res) => {
           status: false,
           errors: {
             status: false,
-            all: {
-              status: true,
-              message: 'حدث خطأ ما في نظامنا أعد المحاولة لاحقا',
-            }
+            message: 'حدث خطأ ما في نظامنا أعد المحاولة لاحقا',
           },
         });
       })
@@ -126,10 +117,7 @@ exports.loginApi = async (req, res) => {
         status: false,
         errors: {
           status: false,
-          all: {
-            status: true,
-            message: 'حدث خطأ ما في نظامنا أعد المحاولة لاحقا',
-          }
+          message: 'حدث خطأ ما في نظامنا أعد المحاولة لاحقا',
         },
       });
     }

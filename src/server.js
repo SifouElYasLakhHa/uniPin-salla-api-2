@@ -31,7 +31,7 @@ const gamesRoutesApi = require('./routes/apis/gamesRoutes');
 const dashboardRoutesPage = require('./routes/pages/dashboardRoutes');
 const gamesRoutesPage = require('./routes/pages/gamesRoutes');
 
-app.use('/auth', authRoutesApi);
+app.use('/api/auth', authRoutesApi);
 app.use('/admin', 
   loginRoutesPage,
   gamesRoutesApi,
