@@ -57,7 +57,7 @@ exports.validateUserUniPin = async (req, res) => {
             };
         }
         const validateUserUniPinApiResponse = await validateUserUniPinApi(data).then((rs) => rs);
-        //console.log(validateUserUniPinApiResponse)
+        console.log(validateUserUniPinApiResponse)
         if(validateUserUniPinApiResponse.status === false) {
             return res.status(200).json({
                 status: false,
