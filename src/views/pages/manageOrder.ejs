@@ -139,7 +139,7 @@
                     $('#server_error').text('');
                 }
                 strRequest = `?gameCode=${gameName}&server=${server}&userId=${userId}`;
-            } else {
+            } else if(type === 2){
                 var zoneId = $('#zoneId').val();
                 if(!zoneId) {
                     $('#zone_id_error').text('Required');
@@ -148,6 +148,8 @@
                     $('#zone_id_error').text('');
                 }
                 strRequest = `?gameCode=${gameName}&userId=${userId}&zoneId=${zoneId}`;
+            } else {
+                return;
             }
             if(issues) return;
             var settings = {
