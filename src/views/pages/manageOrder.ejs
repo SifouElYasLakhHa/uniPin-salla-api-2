@@ -109,11 +109,11 @@
             var gameName = $('#gameName').val();
             var diamondsGame = $('#diamonds').val();
             var issues = false;
-            if(gameName){
-                $('#gameError').text('Required');
+            if(gameName === ''){
+                $('#gameNameError').text('Required');
                 issues = true;
             } else {
-                $('#gameError').text('');
+                $('#gameNameError').text('');
             }
 
             if(diamondsGame === ''){
