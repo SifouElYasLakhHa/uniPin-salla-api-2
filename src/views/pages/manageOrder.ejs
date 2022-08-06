@@ -103,6 +103,7 @@
             }
         });*/
         $('#addOrder').click(function() {
+            
             var type =  $('#addOrder').attr('type'); 
             var strRequest = '';
             var userId = $('#userId').val();
@@ -141,16 +142,15 @@
                 strRequest = `?gameCode=${gameName}&server=${server}&userId=${userId}`;
             } else if(type === 2){
                 var zoneId = $('#zoneId').val();
-                if(!zoneId) {
+                if(zoneId === '') {
                     $('#zone_id_error').text('Required');
                     issues = true;
                 } else {
                     $('#zone_id_error').text('');
                 }
                 strRequest = `?gameCode=${gameName}&userId=${userId}&zoneId=${zoneId}`;
-            } else {
-                return;
-            }
+            } 
+            
             if(issues) return;
             var settings = {
                 "url": `${host}/admin/user/validate${strRequest}`,
@@ -159,9 +159,11 @@
             };
 
             $.ajax(settings).done(function (response) {
+               //alert('1');
                 if(response.status === false) {
                     $('#error_full').text(response.errors.message);
                 } else {
+                    //alert('2');
                     $('#error_full').text();
                     var settings = {
                         "url": `${host}/admin/order/add?gameCode=${gameName}&validationToke=${response.validationToken}&denominationId=${diamondsGame}`,
@@ -175,8 +177,10 @@
 
                     $.ajax(settings).done(function (response) {
                         if(response.status === false) {
+                           // alert('3');
                             $('#error_full').text(response.errors.message);
                         } else {
+                            alert('4');
                             $('#error_full').text('Success');
                             $('#userId').val('');
                             $('#zoneId').val('');
