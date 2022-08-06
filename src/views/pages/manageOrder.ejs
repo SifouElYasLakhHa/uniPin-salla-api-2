@@ -108,7 +108,7 @@
             var userId = $('#userId').val();
             var gameName = $('#gameName').val();
             var diamondsGame = $('#diamonds').val();
-
+            var issues = false;
             if(gameName){
                 $('#gameError').text('Required');
                 issues = true;
@@ -149,6 +149,7 @@
                 }
                 strRequest = `?gameCode=${gameName}&userId=${userId}&zoneId=${zoneId}`;
             }
+            if(issues) return;
             var settings = {
                 "url": `${host}/admin/user/validate${strRequest}`,
                 "method": "POST",
@@ -167,12 +168,7 @@
                         "headers": {
                             "Content-Type": "application/json"
                         },
-                        "data": {
-                            "userId": userID,
-                            "gameCode": gameName,
-                            "type": type,
-                            "denominationId": $('#diamonds').val()
-                        },
+                        "data": {},
                     };
 
                     $.ajax(settings).done(function (response) {
