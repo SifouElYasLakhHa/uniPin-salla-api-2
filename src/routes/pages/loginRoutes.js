@@ -5,6 +5,10 @@ const {
     loginPage,
 } = require("./../../controllers/pages/loginController");
 
-router.get("/login", loginPage);
+const {
+    authLoginPage,
+} = require("../../utils/auth");
+
+router.get("/login", authLoginPage, loginPage);
 
 module.exports = router;

@@ -66,7 +66,43 @@ exports.authLogin = async (req, res, next) => {
             return res.redirect('/admin/login');
         });
     });
-  }
+}
+
+exports.authLoginPage = async (req, res, next) => {
+    var auth = req.headers.authorization
+    //typeof auth !== 'undefined'? auth = auth.split(' ')[1]: auth = undefined;
+    
+    var cookie = req.headers.cookie || auth
+    //console.log(cookie)
+    if(!cookie) {
+        next();
+    }
+   
+    cookie = cookie.split('%20')[1] || cookie.split(' ')[1]
+    
+    if(typeof cookie === "undefined") {
+        next();
+    }
+    
+    cookie = cookie.split(';')[0]
+      
+    jwt.verify(cookie, process.env.JWT_SECRER, (e, user) => {
+        if (e) {
+            next();
+        }
+        db.Users.findOne({ _id: user._id })
+        .then(async usr => {
+                if(!usr) {
+                    next();
+                }
+                req.user = usr;
+                return res.redirect('/admin/dashboard');
+        }).catch(e => {
+            next();
+        });
+    });
+}
+
 exports.getGameDetailsUniPinApi = async (game) => await new Promise(async (resolve, reject) => {
     try {
         var url = 'in-game-topup/detail'
