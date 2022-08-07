@@ -5,7 +5,9 @@ const {
 
 exports.orderAddPage = async (req, res) => {
     try {
+        console.log('Test');
         var getGamesUniPinApiResponse = await getGamesUniPinApi().then((rs) => rs);
+        console.log(getGamesUniPinApiResponse);
         if(getGamesUniPinApiResponse.status === false) throw new Error(getGamesUniPinApiResponse.error.message);
         //console.log(getGamesUniPinApiResponse)
         return res.render('pages/manageOrder', {

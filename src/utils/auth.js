@@ -162,8 +162,9 @@ exports.getGameDetailsUniPinApi = async (game) => await new Promise(async (resol
 exports.getGamesUniPinApi = async () => await new Promise(async (resolve, reject) => {
     try {
         var url = 'in-game-topup/list'
+        //console.log('hash256Response')
         var hash256Response = await hash256(url).then((rs) => rs);
-        //console.log(hash256Response)
+        
         if(hash256Response.status === false) throw new Error(error.message);
         hash256Response = hash256Response.hash256;
 
@@ -181,10 +182,10 @@ exports.getGamesUniPinApi = async () => await new Promise(async (resolve, reject
             },
             data : data
         };
-
+        console.log('hash256Response')
         axios(config)
         .then(function (response) {
-            //console.log(response.data.status)
+            console.log(response)
            // if(response.data.status !== 1) throw new Error(response.data.error.message);
             resolve({
                 status: true,
@@ -192,6 +193,7 @@ exports.getGamesUniPinApi = async () => await new Promise(async (resolve, reject
             });
         })
         .catch(function (e) {
+            console.log(e)
             resolve({
                 status: false,
                 error: {
@@ -202,6 +204,7 @@ exports.getGamesUniPinApi = async () => await new Promise(async (resolve, reject
         });
 
     } catch (e) {
+        console.log(e)
         resolve({
             status: false,
             error: {
@@ -337,6 +340,7 @@ exports.validateUserUniPinApi = async (data) => await new Promise(async (resolve
 
 const hash256 = async (url) => await new Promise((resolve, reject) => {
     try {
+      //  console.log(`${process.env.HASH_HOST}/?url=${url}&guid=${process.env.UNIPIN_PARTNER_ID}&password=${process.env.UNIPIN_PARTNER_SECRET}`)
         var config = {
             method: 'get',
             url: `${process.env.HASH_HOST}/?url=${url}&guid=${process.env.UNIPIN_PARTNER_ID}&password=${process.env.UNIPIN_PARTNER_SECRET}`,
