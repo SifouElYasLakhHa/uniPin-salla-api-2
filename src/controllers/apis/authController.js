@@ -189,3 +189,21 @@ exports.addAdminApi = async (req, res) => {
     });
   }
 };
+exports.signOutApi = async (req, res) => {
+  try {
+    await res.clearCookie('auth_token');
+    await res.cookie('auth_token', '', { maxAge: 0, httpOnly: true });
+    return res.redirect('/');
+  } catch(e) {
+    //console.log(e)
+    return res.status(500).json({
+      error: true,
+      status: false,
+      type: 'site',
+      all: {
+        status: true,
+         message: 'حدث خطأ ما رجاءا تواصل مع الدعم الفني',
+      }
+    })
+  }
+}

@@ -26,4 +26,19 @@
                 });
             }
         })
+        $('#sign_out').click(function() {
+            var settings = {
+                    "url": "<%- host %>/api/auth/sign_out",
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "data": JSON.stringify({}),
+            };
+            $.ajax(settings).done(function (response) {
+                window.location.reload();
+            });
+        })
+        
     </script>

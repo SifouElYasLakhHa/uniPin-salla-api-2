@@ -13,6 +13,9 @@ exports.orderAddPage = async (req, res) => {
             host: process.env.HOST,
             subTitle: 'اظافة طلب جديد',
             games: getGamesUniPinApiResponse.games.game_list,
+            user: {
+                username: req.user.username,
+            }
         });
     } catch (e) {
         console.log(e)
