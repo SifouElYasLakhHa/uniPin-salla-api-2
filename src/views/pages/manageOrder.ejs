@@ -179,10 +179,6 @@
                         "url": `${host}/admin/order/create?gameCode=${gameName}&validationToken=${response.validationToken}&denominationId=${diamondsGame}`,
                         "method": "POST",
                         "timeout": 0,
-                        "headers": {
-                            "Content-Type": "application/json"
-                        },
-                        "data": {},
                     };
 
                     $.ajax(settings).done(function (response) {
