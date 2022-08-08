@@ -34,7 +34,7 @@ exports.gameDetailsUniPin = async (req, res) => {
 
 exports.validateUserUniPin = async (req, res) => {
     try {
-        const { gameCode, zoneId, serverId, type, userId} = req.query;
+        const { gameCode, zoneId, server, type, userId} = req.query;
         var data = {
             fields: {
             }
@@ -44,7 +44,7 @@ exports.validateUserUniPin = async (req, res) => {
                 game_code: gameCode,
                 fields: {
                     userid: userId,
-                    server: serverId,
+                    server,
                 }
             };
         } else {
@@ -57,7 +57,8 @@ exports.validateUserUniPin = async (req, res) => {
             };
         }
         const validateUserUniPinApiResponse = await validateUserUniPinApi(data).then((rs) => rs);
-        console.log(validateUserUniPinApiResponse)
+        console.log('validateUserUniPinApiResponse');
+        console.log(validateUserUniPinApiResponse);
         if(validateUserUniPinApiResponse.status === false) {
             return res.status(200).json({
                 status: false,
@@ -96,7 +97,8 @@ exports.createOrderUniPin = async (req, res) => {
         };
 
         const createOrderUniPinApiResponse = await createOrderUniPinApi(data).then((rs) => rs);
-
+        console.log('createOrderUniPinApiResponse');
+        console.log(createOrderUniPinApiResponse);
         if(createOrderUniPinApiResponse.status === false) {
             return res.status(200).json({
                 status: false,

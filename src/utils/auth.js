@@ -43,9 +43,9 @@ exports.authLogin = async (req, res, next) => {
       return res.redirect('/admin/login');
     }
    
-    cookie = cookie.split('%20')[1] || cookie.split(' ')[1]
+    cookie = typeof cookie === 'string'? cookie.split('%20')[1]:'' || typeof cookie === 'string'? cookie.split(' ')[1]: '';
     
-    if(typeof cookie === "undefined") {
+    if(typeof cookie === "undefined" || cookie === '') {
       return res.redirect('/admin/login');
     }
     
@@ -78,7 +78,7 @@ exports.authLoginPage = async (req, res, next) => {
         next();
     }
    
-    cookie = cookie.split('%20')[1] || cookie.split(' ')[1]
+    cookie = typeof cookie === 'string'? cookie.split('%20')[1]:'' || typeof cookie === 'string'? cookie.split(' ')[1]: '';
     
     if(typeof cookie === "undefined") {
         next();
@@ -90,16 +90,20 @@ exports.authLoginPage = async (req, res, next) => {
         if (e) {
             next();
         }
-        db.Users.findOne({ _id: user._id })
-        .then(async usr => {
-                if(!usr) {
-                    next();
-                }
-                req.user = usr;
-                return res.redirect('/admin/dashboard');
-        }).catch(e => {
-            next();
-        });
+        if(typeof user === 'undefined') {
+
+        } else {
+            db.Users.findOne({ _id: user._id })
+            .then(async usr => {
+                    if(!usr) {
+                        next();
+                    }
+                    req.user = usr;
+                    return res.redirect('/admin/dashboard');
+            }).catch(e => {
+                next();
+            });
+        }
     });
 }
 
@@ -156,8 +160,6 @@ exports.getGameDetailsUniPinApi = async (game) => await new Promise(async (resol
         });
     }
 });
-
-
 
 exports.getGamesUniPinApi = async () => await new Promise(async (resolve, reject) => {
     try {
@@ -275,7 +277,6 @@ exports.createOrderUniPinApi = async (data) => await new Promise(async (resolve,
         });
     }
 });
-
 
 exports.validateUserUniPinApi = async (data) => await new Promise(async (resolve, reject) => {
     try {

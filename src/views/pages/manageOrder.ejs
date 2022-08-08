@@ -143,7 +143,7 @@
                 } else {
                     $('#server_error').text('');
                 }
-                strRequest = `?gameCode=${gameName}&server=${server}&userId=${userId}`;
+                strRequest = `?gameCode=${gameName}&server=${server}&userId=${userId}&type=${type}`;
                 console.log(strRequest);
             } else if(Number(type) === 2){
                 console.log('strRequest_2');
@@ -154,10 +154,9 @@
                 } else {
                     $('#zone_id_error').text('');
                 }
-                strRequest = `?gameCode=${gameName}&userId=${userId}&zoneId=${zoneId}`; 
+                strRequest = `?gameCode=${gameName}&userId=${userId}&zoneId=${zoneId}&type=${type}`; 
             } 
-            console.log(strRequest)
-            return
+          
             if(issues) return;
             var settings = {
                 "url": `${host}/admin/user/validate${strRequest}`,
@@ -171,9 +170,10 @@
                     $('#error_full').text(response.errors.message);
                 } else {
                     //alert('2');
+                    //console.log(response.validationToken)
                     $('#error_full').text();
                     var settings = {
-                        "url": `${host}/admin/order/add?gameCode=${gameName}&validationToke=${response.validationToken}&denominationId=${diamondsGame}`,
+                        "url": `${host}/admin/order/create?gameCode=${gameName}&validationToken=${response.validationToken}&denominationId=${diamondsGame}`,
                         "method": "POST",
                         "timeout": 0,
                         "headers": {
@@ -191,7 +191,7 @@
                             $('#error_full').text('Success');
                             $('#userId').val('');
                             $('#zoneId').val('');
-                            //window.location.reload();
+                            window.location.reload();
                         }
                     })
                 }
