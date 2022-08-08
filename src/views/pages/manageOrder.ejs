@@ -58,6 +58,9 @@
                         if(f.type === 'dropdown') {
                             fields = f.data;
                             type = 1;
+                        } else {
+                            type = 2;
+                            fields = [];
                         }
                     }
                     if(type === 1) {
