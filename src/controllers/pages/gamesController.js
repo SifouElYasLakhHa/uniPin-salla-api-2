@@ -14,7 +14,7 @@ exports.orderAddPage = async (req, res) => {
             mainTitle: process.env.APP_NAME,
             host: process.env.HOST,
             subTitle: 'اظافة طلب جديد',
-            games: getGamesUniPinApiResponse.games.game_list,
+            games: getGamesUniPinApiResponse.games.game_list.length === 0?[]:getGamesUniPinApiResponse.games.game_list,
             user: {
                 username: req.user.username,
             }
