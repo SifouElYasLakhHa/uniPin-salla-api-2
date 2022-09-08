@@ -37,6 +37,6 @@ app.use('/admin',
   gamesRoutesApi,
   dashboardRoutesPage,
   gamesRoutesPage,
-  );
+);
 
 module.exports = app;

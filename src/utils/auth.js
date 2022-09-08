@@ -76,12 +76,14 @@ exports.authLoginPage = async (req, res, next) => {
     //console.log(cookie)
     if(!cookie) {
         next();
+        return
     }
    
     cookie = typeof cookie === 'string'? cookie.split('%20')[1]:'' || typeof cookie === 'string'? cookie.split(' ')[1]: '';
     
     if(typeof cookie === "undefined") {
         next();
+        return
     }
     
     cookie = cookie.split(';')[0]
@@ -89,6 +91,7 @@ exports.authLoginPage = async (req, res, next) => {
     jwt.verify(cookie, process.env.JWT_SECRER, (e, user) => {
         if (e) {
             next();
+            return
         }
         if(typeof user === 'undefined') {
 
@@ -102,6 +105,7 @@ exports.authLoginPage = async (req, res, next) => {
                     return res.redirect('/admin/dashboard');
             }).catch(e => {
                 next();
+                return
             });
         }
     });
