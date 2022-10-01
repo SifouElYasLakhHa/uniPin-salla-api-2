@@ -30,6 +30,7 @@ const loginRoutesPage = require('./routes/pages/loginRoutes');
 const gamesRoutesApi = require('./routes/apis/gamesRoutes');
 const dashboardRoutesPage = require('./routes/pages/dashboardRoutes');
 const gamesRoutesPage = require('./routes/pages/gamesRoutes');
+const manageVouchersRoutes = require('./routes/pages/manageVouchersRoutes');
 
 app.use('/api/auth', authRoutesApi);
 app.use('/admin', 
@@ -37,6 +38,7 @@ app.use('/admin',
   gamesRoutesApi,
   dashboardRoutesPage,
   gamesRoutesPage,
+  manageVouchersRoutes,
 );
 
 module.exports = app;

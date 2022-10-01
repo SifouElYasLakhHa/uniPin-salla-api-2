@@ -36,25 +36,38 @@
             $.ajax(settings).done(function (response) {
                 if(response.status === true) {
                     $('#gameError').text();
-                    var htmlServerContent = '<option value="">اختيار طريقة الحشن</option>';
+                    var htmlServerContent = '<option value="">اختيار طريقة الشحن</option>';
                     var htmlDenominationsContent = '';
                     for(var d of response.gameDetails.denominations) {
                         htmlDenominationsContent += '<option value="';
                         htmlDenominationsContent += d.id;
-                        htmlDenominationsContent += '">';
+                        htmlDenominationsContent += '" type="0">';
                         htmlDenominationsContent += d.name;
                         htmlDenominationsContent += '</option>';
                         //`<option value="${d.id}">${d.name}</option>`;
                     }
-                    
+
+                    var gameName = $('#gameName').val();
+
+                    if(gameName === 'MLBBD_PH') {
+                        htmlDenominationsContent += mobileLegendsMoreSpecifiedPackage(response.gameDetails.denominations);
+                    }
+
                     $('#diamonds').append(htmlDenominationsContent);
                     
                     for(var f of response.gameDetails.fields) {
-                        /*htmlServerContent += '<option value="' 
-                        htmlServerContent +=  f.type;
-                        htmlServerContent += '">';
-                        htmlServerContent += f.name;
-                        htmlServerContent += '</option>';*/
+
+                        /*  
+
+                            htmlServerContent += '<option value="' 
+                            htmlServerContent +=  f.type;
+                            htmlServerContent += '">';
+                            htmlServerContent += f.name;
+                            htmlServerContent += '</option>';
+
+                        */
+                        
+
                         if(f.type === 'dropdown') {
                             fields = f.data;
                             type = 1;
@@ -105,12 +118,299 @@
                 $('#server').append(htmlServerContent);
             }
         });*/
+        function sleep(ms){
+            var start = new Date().getTime();
+            var end = start;
+            while(end < start + ms) {
+                end = new Date().getTime();
+            }
+        }
+
+        function  mobileLegendsMoreSpecifiedPackage(denominations){
+            var htmlServerContent = '';
+            /***************
+             * 145 Start
+             * *************/
+
+                htmlServerContent += '<option value="' 
+                htmlServerContent +=  denominations[0].type + '-' + denominations[1].type + '-' + denominations[3].type;
+                htmlServerContent += '" type="1">';
+                htmlServerContent += '145 Diamonds';
+                htmlServerContent += '</option>';
+
+            /***************
+             * 145 End
+             * *************/ // done
+
+
+            /*************************************************** */
+
+            /***************
+             * 279 Start
+             * *************/
+
+                htmlServerContent += '<option value="' 
+                htmlServerContent +=  denominations[4].type + '-' + denominations[2].type;
+                htmlServerContent += '" type="1">';
+                htmlServerContent += '279 Diamonds';
+                htmlServerContent += '</option>';
+
+            /***************
+             * 279 End
+             * *************/ // done
+
+
+            /*************************************************** */
+
+
+            /***************
+             * 448 Start
+             * *************/
+
+                htmlServerContent += '<option value="' 
+                htmlServerContent +=  denominations[3].type + '-' + denominations[5].type;
+                htmlServerContent += '" type="1">';
+                htmlServerContent += '448 Diamonds';
+                htmlServerContent += '</option>';
+
+            /***************
+             * 448 End
+             * *************/ // done
+
+
+            /*************************************************** */
+
+
+
+            /***************
+             * 704 Start
+             * *************/ // done
+
+                htmlServerContent += '<option value="' 
+                htmlServerContent +=  denominations[3].type + '-' + denominations[1].type + '-' + denominations[6].type;
+                htmlServerContent += '" type="1">';
+                htmlServerContent += '704 Diamonds';
+                htmlServerContent += '</option>';
+
+            /***************
+             * 704 End
+             * *************/
+
+
+            /*************************************************** */
+
+
+            /***************
+             * 1005 Start
+             * *************/ // done
+
+                htmlServerContent += '<option value="' 
+                htmlServerContent +=  denominations[6].type + '-' + denominations[5].type + '-' + denominations[0].type + '-' + denominations[1].type + '-' + denominations[1].type  + '-' + denominations[1].type + '-' + denominations[1].type + '-' + denominations[1].type;
+                htmlServerContent += '" type="1">';
+                htmlServerContent += '1005 Diamonds';
+                htmlServerContent += '</option>';
+
+            /***************
+             * 1005 End
+             * *************/
+
+            /*************************************************** */
+
+            /***************
+             * 1733 Start
+             * *************/ // done
+
+                htmlServerContent += '<option value="' 
+                htmlServerContent +=  denominations[6].type + '-' + denominations[7].type;
+                htmlServerContent += '" type="1">';
+                htmlServerContent += '1733 Diamonds';
+                htmlServerContent += '</option>';
+
+            /***************
+             * 1733 End
+             * *************/
+
+
+            /*************************************************** */
+
+
+            /***************
+             * 2970 Start
+             * *************/// done
+
+                htmlServerContent += '<option value="' 
+                htmlServerContent +=  denominations[6].type + '-' + denominations[8].type;
+                htmlServerContent += '" type="1">';
+                htmlServerContent += '2970 Diamonds';
+                htmlServerContent += '</option>';
+
+            /***************
+             * 2970 End
+             * *************/
+
+
+            /*************************************************** */
+
+
+
+            /***************
+             * 3560 Start
+             * *************/// done
+
+            htmlServerContent += '<option value="' 
+            htmlServerContent +=  denominations[8].type + '-' + denominations[7].type;
+            htmlServerContent += '" type="1">';
+            htmlServerContent += '3560 Diamonds';
+            htmlServerContent += '</option>';
+
+            /***************
+             * 3560 End
+             * *************/
+
+            /*************************************************** */
+
+
+            /***************
+             * 4133 Start
+             * *************/ // done
+
+            htmlServerContent += '<option value="' 
+            htmlServerContent +=  denominations[8].type + '-' + denominations[2].type;
+            htmlServerContent += '" type="1">';
+            htmlServerContent += '4133 Diamonds';
+            htmlServerContent += '</option>';
+
+            /***************
+             * 4133 End
+             * *************/
+
+
+
+            /*************************************************** */
+
+
+            /***************
+             * 4800 Start
+             * *************/ // done
+
+            htmlServerContent += '<option value="' 
+            htmlServerContent +=  denominations[8].type + '-' + denominations[8].type;
+            htmlServerContent += '" type="1">';
+            htmlServerContent += '4800 Diamonds';
+            htmlServerContent += '</option>';
+
+            /***************
+             * 4800 End
+             * *************/
+
+
+
+            /*************************************************** */
+
+
+
+            /***************
+             * 5370 Start
+             * *************/
+
+            htmlServerContent += '<option value="' 
+            htmlServerContent +=  denominations[8].type + '-' + denominations[8].type + '-' + denominations[6].type;
+            htmlServerContent += '" type="1">';
+            htmlServerContent += '5370 Diamonds';
+            htmlServerContent += '</option>';
+            
+            /***************
+             * 5370 End
+             * *************/
+
+
+            /*************************************************** */
+
+
+
+            /***************
+             * 8442 Start
+             * *************/
+
+            htmlServerContent += '<option value="' 
+            htmlServerContent +=  denominations[9].type + '-' + denominations[8].type;
+            htmlServerContent += '" type="1">';
+            htmlServerContent += '8442 Diamonds';
+            htmlServerContent += '</option>';
+
+            /***************
+             * 8442 End
+             * *************/
+
+
+
+            /*************************************************** */
+
+
+
+            /***************
+             * 12084 Start
+             * *************/
+
+            htmlServerContent += '<option value="' 
+            htmlServerContent +=  denominations[9].type + '-' + denominations[9].type;
+            htmlServerContent += '" type="1">';
+            htmlServerContent += '12084 Diamonds';
+            htmlServerContent += '</option>';
+
+            /***************
+             * 12084 End
+             * *************/
+
+
+
+
+
+            /*************************************************** */
+
+
+
+            /***************
+             * 18126 Start
+             * *************/
+
+            htmlServerContent += '<option value="' 
+            htmlServerContent +=  denominations[9].type + '-' + denominations[9].type + '-' + denominations[9].type;
+            htmlServerContent += '" type="1">';
+            htmlServerContent += '18126 Diamonds';
+            htmlServerContent += '</option>';
+
+            /***************
+             * 18126 End
+             * *************/
+
+            /*************************************************** */
+
+
+
+            /***************
+             * 20500 Start
+             * *************/
+
+            htmlServerContent += '<option value="' 
+            htmlServerContent +=  denominations[9].type + '-' + denominations[9].type + '-' + denominations[9].type + '-' + denominations[8].type;
+            htmlServerContent += '" type="1">';
+            htmlServerContent += '20500 Diamonds';
+            htmlServerContent += '</option>';
+
+            /***************
+             * 20500 End
+             * *************/
+
+            return htmlServerContent;
+        }
         $('#addOrder').click(function() {
             var type =  $('#addOrder').attr('type'); 
             var strRequest = '';
             var userId = $('#userId').val();
             var gameName = $('#gameName').val();
-            var diamondsGame = $('#diamonds').val();
+            var diamondsGame;
+           
             console.log(userId)
             console.log(gameName)
             console.log(diamondsGame)
@@ -159,44 +459,91 @@
                 }
                 strRequest = `?gameCode=${gameName}&userId=${userId}&zoneId=${zoneId}&type=${type}`; 
             } 
-          
-            if(issues) return;
-            var settings = {
-                "url": `${host}/admin/user/validate${strRequest}`,
-                "method": "POST",
-                "timeout": 0,
-            };
+           
 
-            $.ajax(settings).done(function (response) {
-               //alert('1');
-                if(response.status === false) {
-                    $('#error_full').text(response.errors.message);
-                } else {
-                    //alert('2');
-                    //console.log(response.validationToken)
-                    $('#error_full').text();
+            if(issues) return;
+            $('#addOrder').attr('disabled', true); 
+            if(gameName === 'MLBBD_PH' && Number($('#diamonds').attr('type')) === 1) {
+                diamondsGame = $('#diamonds').val();
+                diamondsGame = diamondsGame.split('-');
+                for(var d of diamondsGame) {
                     var settings = {
-                        "url": `${host}/admin/order/create?gameCode=${gameName}&validationToken=${response.validationToken}&denominationId=${diamondsGame}`,
+                        "url": `${host}/admin/user/validate${strRequest}`,
                         "method": "POST",
                         "timeout": 0,
                     };
 
                     $.ajax(settings).done(function (response) {
+                    //alert('1');
                         if(response.status === false) {
-                           // alert('3');
                             $('#error_full').text(response.errors.message);
                         } else {
-                          //  alert('4');
-                            $('#error_full').text('Success');
-                            $('#userId').val('');
-                            $('#zoneId').val('');
-                            window.location.reload();
+                            //alert('2');
+                            //console.log(response.validationToken)
+                            $('#error_full').text();
+                            var settings = {
+                                "url": `${host}/admin/order/create?gameCode=${gameName}&validationToken=${response.validationToken}&denominationId=${d}`,
+                                "method": "POST",
+                                "timeout": 0,
+                            };
+
+                            $.ajax(settings).done(function (response) {
+                                if(response.status === false) {
+                                // alert('3');
+                                    $('#error_full').text(response.errors.message);
+                                } else {
+                                //  alert('4');
+                                    $('#error_full').text('Success');
+                                    $('#userId').val('');
+                                    $('#zoneId').val('');
+                                    window.location.reload();
+                                }
+                                sleep(500);
+                            })
                         }
-                    })
+                        //console.log(response);
+                    }); 
                 }
-                //console.log(response);
-            });
-        })
+            } else {
+                diamondsGame = $('#diamonds').val();
+                var settings = {
+                    "url": `${host}/admin/user/validate${strRequest}`,
+                    "method": "POST",
+                    "timeout": 0,
+                };
+
+                $.ajax(settings).done(function (response) {
+                //alert('1');
+                    if(response.status === false) {
+                        $('#error_full').text(response.errors.message);
+                    } else {
+                        //alert('2');
+                        //console.log(response.validationToken)
+                        $('#error_full').text();
+                        var settings = {
+                            "url": `${host}/admin/order/create?gameCode=${gameName}&validationToken=${response.validationToken}&denominationId=${diamondsGame}`,
+                            "method": "POST",
+                            "timeout": 0,
+                        };
+
+                        $.ajax(settings).done(function (response) {
+                            if(response.status === false) {
+                            // alert('3');
+                                $('#error_full').text(response.errors.message);
+                            } else {
+                            //  alert('4');
+                                $('#error_full').text('Success');
+                                $('#userId').val('');
+                                $('#zoneId').val('');
+                                window.location.reload();
+                            }
+                        })
+                    }
+                    //console.log(response);
+                });
+            }
+
+       })
     </script>
 </body>
 <!-- END: Body-->

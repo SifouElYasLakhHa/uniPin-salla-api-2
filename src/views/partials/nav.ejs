@@ -114,14 +114,12 @@
             </a></li>
     </ul>
     <!-- END: Header-->
-
         <!-- BEGIN: Main Menu-->
         <div class="horizontal-menu-wrapper">
             <div class="header-navbar navbar-expand-sm navbar navbar-horizontal floating-nav navbar-dark navbar-shadow menu-border container-xxl" role="navigation" data-menu="menu-wrapper" data-menu-type="floating-nav">
                 <div class="navbar-header">
                     <ul class="nav navbar-nav flex-row">
-                        <li class="nav-item me-auto"><a class="navbar-brand" href="<%- host %>/admin/dashboard"><span class="brand-logo">
-</span>
+                        <li class="nav-item me-auto"><a class="navbar-brand" href="<%- host %>/admin/dashboard"><span class="brand-logo"></span>                                                                                                           
                                 <h2 class="brand-text mb-0"><%- mainTitle %></h2>
                             </a></li>
                         <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i></a></li>
@@ -133,22 +131,28 @@
                     <!-- include <%- host %>/dashboard/includes/mixins-->
                     <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                         <li class="dropdown nav-item" data-menu="dropdown">
-                            <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown"><i data-feather="home"></i><span data-i18n="Dashboards">لوحة التحكم</span></a>
+                            <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown"><i data-feather="home"></i><span data-i18n="Dashboards">Dashboard</span></a>
                             <ul class="dropdown-menu" data-bs-popper="none">
                                 <li data-menu="">
-                                    <a class="dropdown-item d-flex align-items-center" href="<%- host %>/admin/dashboard" data-bs-toggle="" data-i18n="Analytics"><i data-feather="activity"></i><span data-i18n="Analytics">الرئيسية</span></a>
+                                    <a class="dropdown-item d-flex align-items-center" href="<%- host %>/admin/dashboard" data-bs-toggle="" data-i18n="Analytics"><i data-feather="activity"></i><span data-i18n="Analytics">Main page</span></a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown"><i data-feather="package"></i><span data-i18n="Apps">انشاء طلب</span></a>
+                        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown"><i data-feather="package"></i><span data-i18n="Apps">New Order</span></a>
                             <ul class="dropdown-menu" data-bs-popper="none">
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="<%- host %>/admin/order/add" data-bs-toggle="" data-i18n="users"><i data-feather="users"></i><span data-i18n="Apps">دخول</span></a>
+                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="<%- host %>/admin/order/add" data-bs-toggle="" data-i18n="users"><i data-feather="layers"></i><span data-i18n="Apps">Add</span></a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown"><i data-feather="layers"></i><span data-i18n="User Interface">الاعدادات العامة</span></a>
+                        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown"><i data-feather="package"></i><span data-i18n="Apps">New Voucher</span></a>
                             <ul class="dropdown-menu" data-bs-popper="none">
-                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="#" data-bs-toggle="" data-i18n="settings"><i data-feather="settings"></i><span data-i18n="settings">دخول</span></a>
+                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="<%- host %>/admin/voucher/add" data-bs-toggle="" data-i18n="users"><i data-feather="layers"></i><span data-i18n="Apps">Add</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown"><i data-feather="layers"></i><span data-i18n="User Interface">Settings</span></a>
+                            <ul class="dropdown-menu" data-bs-popper="none">
+                                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="#" data-bs-toggle="" data-i18n="settings"><i data-feather="settings"></i><span data-i18n="settings">Add</span></a>
                                 </li>
                             </ul>
                         </li>
