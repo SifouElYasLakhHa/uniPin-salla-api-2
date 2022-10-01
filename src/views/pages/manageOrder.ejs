@@ -466,7 +466,9 @@
             if(gameName === 'MLBBD_PH' && Number($('#diamonds').attr('type')) === 1) {
                 diamondsGame = $('#diamonds').val();
                 diamondsGame = diamondsGame.split('-');
+                var i = 0;
                 for(var d of diamondsGame) {
+                    
                     var settings = {
                         "url": `${host}/admin/user/validate${strRequest}`,
                         "method": "POST",
@@ -488,22 +490,25 @@
                             };
 
                             $.ajax(settings).done(function (response) {
+                                
                                 if(response.status === false) {
                                 // alert('3');
-                                    $('#error_full').text(response.errors.message);
+                                    $('#error_full').text(response.errors.message, 'order number', i);
                                 } else {
                                 //  alert('4');
-                                    $('#error_full').text('Success');
+                                    $('#error_full').text('Success Order number:', i);
                                     $('#userId').val('');
                                     $('#zoneId').val('');
-                                    window.location.reload();
+                                   // window.location.reload();
                                 }
+                                i++;
                                 sleep(500);
                             })
                         }
                         //console.log(response);
                     }); 
                 }
+                window.location.reload();
             } else {
                 diamondsGame = $('#diamonds').val();
                 var settings = {
