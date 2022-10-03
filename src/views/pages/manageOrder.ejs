@@ -125,15 +125,52 @@
                 end = new Date().getTime();
             }
         }
+        function sendRequestAddDiamondsMobileLegendsDiamondsGame (details) {
+            return new Promise((resolve, reject) => {
+                var settings = {
+                        "url": `${host}/admin/user/validate${details.strRequest}`,
+                        "method": "POST",
+                        "timeout": 0,
+                    };
+                    //console.log(d)
+                    $.ajax(settings).done(function (response) {
+                        if(response.status === false) {
+                            $('#error_full').text(response.errors.message);
+                        } else {
+                            $('#error_full').text();
+                            console.log(details.denominationId)
+                            var settings = {
+                                "url": `${host}/admin/order/create?gameCode=${details.gameName}&validationToken=${response.validationToken}&denominationId=${details.denominationId}`,
+                                "method": "POST",
+                                "timeout": 0,
+                            };
 
+                            $.ajax(settings).done(function (response) {
+                                //alert()
+                                if(response.status === false) {
+                                    $('#error_full').text(response.errors.message, 'order number', details.index);
+                                    resolve({ status: false });
+                                } else {
+                                    $('#error_full').text('Success Order number:', details.index);
+                                    $('#userId').val('');
+                                    $('#zoneId').val('');
+                                    resolve({ status: true });
+                                }
+                            })
+                        }
+                    }); 
+                
+            });
+        }
         function  mobileLegendsMoreSpecifiedPackage(denominations){
+            console.log(denominations)
             var htmlServerContent = '';
             /***************
              * 145 Start
              * *************/
 
                 htmlServerContent += '<option value="' 
-                htmlServerContent +=  denominations[0].type + '-' + denominations[1].type + '-' + denominations[3].type;
+                htmlServerContent +=  denominations[0].id + '-' + denominations[1].id + '-' + denominations[3].id;
                 htmlServerContent += '" type="1">';
                 htmlServerContent += '145 Diamonds';
                 htmlServerContent += '</option>';
@@ -150,7 +187,7 @@
              * *************/
 
                 htmlServerContent += '<option value="' 
-                htmlServerContent +=  denominations[4].type + '-' + denominations[2].type;
+                htmlServerContent +=  denominations[4].id + '-' + denominations[2].id;
                 htmlServerContent += '" type="1">';
                 htmlServerContent += '279 Diamonds';
                 htmlServerContent += '</option>';
@@ -168,7 +205,7 @@
              * *************/
 
                 htmlServerContent += '<option value="' 
-                htmlServerContent +=  denominations[3].type + '-' + denominations[5].type;
+                htmlServerContent +=  denominations[3].id + '-' + denominations[5].id;
                 htmlServerContent += '" type="1">';
                 htmlServerContent += '448 Diamonds';
                 htmlServerContent += '</option>';
@@ -187,7 +224,7 @@
              * *************/ // done
 
                 htmlServerContent += '<option value="' 
-                htmlServerContent +=  denominations[3].type + '-' + denominations[1].type + '-' + denominations[6].type;
+                htmlServerContent +=  denominations[3].id + '-' + denominations[1].id + '-' + denominations[6].id;
                 htmlServerContent += '" type="1">';
                 htmlServerContent += '704 Diamonds';
                 htmlServerContent += '</option>';
@@ -205,7 +242,7 @@
              * *************/ // done
 
                 htmlServerContent += '<option value="' 
-                htmlServerContent +=  denominations[6].type + '-' + denominations[5].type + '-' + denominations[0].type + '-' + denominations[1].type + '-' + denominations[1].type  + '-' + denominations[1].type + '-' + denominations[1].type + '-' + denominations[1].type;
+                htmlServerContent +=  denominations[6].id + '-' + denominations[5].id + '-' + denominations[0].id + '-' + denominations[1].id  + '-' + denominations[1].id + '-' + denominations[1].id + '-' + denominations[1].id;
                 htmlServerContent += '" type="1">';
                 htmlServerContent += '1005 Diamonds';
                 htmlServerContent += '</option>';
@@ -221,7 +258,7 @@
              * *************/ // done
 
                 htmlServerContent += '<option value="' 
-                htmlServerContent +=  denominations[6].type + '-' + denominations[7].type;
+                htmlServerContent +=  denominations[6].id + '-' + denominations[7].id;
                 htmlServerContent += '" type="1">';
                 htmlServerContent += '1733 Diamonds';
                 htmlServerContent += '</option>';
@@ -239,7 +276,7 @@
              * *************/// done
 
                 htmlServerContent += '<option value="' 
-                htmlServerContent +=  denominations[6].type + '-' + denominations[8].type;
+                htmlServerContent +=  denominations[6].id + '-' + denominations[8].id;
                 htmlServerContent += '" type="1">';
                 htmlServerContent += '2970 Diamonds';
                 htmlServerContent += '</option>';
@@ -258,7 +295,7 @@
              * *************/// done
 
             htmlServerContent += '<option value="' 
-            htmlServerContent +=  denominations[8].type + '-' + denominations[7].type;
+            htmlServerContent +=  denominations[8].id + '-' + denominations[7].id;
             htmlServerContent += '" type="1">';
             htmlServerContent += '3560 Diamonds';
             htmlServerContent += '</option>';
@@ -275,7 +312,7 @@
              * *************/ // done
 
             htmlServerContent += '<option value="' 
-            htmlServerContent +=  denominations[8].type + '-' + denominations[2].type;
+            htmlServerContent +=  denominations[6].id + '-' + denominations[7].id + '-' + denominations[8].id;
             htmlServerContent += '" type="1">';
             htmlServerContent += '4133 Diamonds';
             htmlServerContent += '</option>';
@@ -294,7 +331,7 @@
              * *************/ // done
 
             htmlServerContent += '<option value="' 
-            htmlServerContent +=  denominations[8].type + '-' + denominations[8].type;
+            htmlServerContent +=  denominations[8].id + '-' + denominations[8].id;
             htmlServerContent += '" type="1">';
             htmlServerContent += '4800 Diamonds';
             htmlServerContent += '</option>';
@@ -314,7 +351,7 @@
              * *************/
 
             htmlServerContent += '<option value="' 
-            htmlServerContent +=  denominations[8].type + '-' + denominations[8].type + '-' + denominations[6].type;
+            htmlServerContent +=  denominations[8].id + '-' + denominations[8].id + '-' + denominations[6].id;
             htmlServerContent += '" type="1">';
             htmlServerContent += '5370 Diamonds';
             htmlServerContent += '</option>';
@@ -333,7 +370,7 @@
              * *************/
 
             htmlServerContent += '<option value="' 
-            htmlServerContent +=  denominations[9].type + '-' + denominations[8].type;
+            htmlServerContent +=  denominations[9].id + '-' + denominations[8].id;
             htmlServerContent += '" type="1">';
             htmlServerContent += '8442 Diamonds';
             htmlServerContent += '</option>';
@@ -353,7 +390,7 @@
              * *************/
 
             htmlServerContent += '<option value="' 
-            htmlServerContent +=  denominations[9].type + '-' + denominations[9].type;
+            htmlServerContent +=  denominations[9].id + '-' + denominations[9].id;
             htmlServerContent += '" type="1">';
             htmlServerContent += '12084 Diamonds';
             htmlServerContent += '</option>';
@@ -375,7 +412,7 @@
              * *************/
 
             htmlServerContent += '<option value="' 
-            htmlServerContent +=  denominations[9].type + '-' + denominations[9].type + '-' + denominations[9].type;
+            htmlServerContent +=  denominations[9].id + '-' + denominations[9].id + '-' + denominations[9].id;
             htmlServerContent += '" type="1">';
             htmlServerContent += '18126 Diamonds';
             htmlServerContent += '</option>';
@@ -393,7 +430,7 @@
              * *************/
 
             htmlServerContent += '<option value="' 
-            htmlServerContent +=  denominations[9].type + '-' + denominations[9].type + '-' + denominations[9].type + '-' + denominations[8].type;
+            htmlServerContent +=  denominations[9].id + '-' + denominations[9].id + '-' + denominations[9].id + '-' + denominations[8].id;
             htmlServerContent += '" type="1">';
             htmlServerContent += '20500 Diamonds';
             htmlServerContent += '</option>';
@@ -404,16 +441,16 @@
 
             return htmlServerContent;
         }
-        $('#addOrder').click(function() {
+        $('#addOrder').click(async function() {
             var type =  $('#addOrder').attr('type'); 
             var strRequest = '';
             var userId = $('#userId').val();
             var gameName = $('#gameName').val();
             var diamondsGame;
            
-            console.log(userId)
-            console.log(gameName)
-            console.log(diamondsGame)
+            //.log(userId)
+            //console.log(gameName)
+            //console.log(diamondsGame)
 
             var issues = false;
             if(gameName === ''){
@@ -459,54 +496,26 @@
                 }
                 strRequest = `?gameCode=${gameName}&userId=${userId}&zoneId=${zoneId}&type=${type}`; 
             } 
-           
-
+            
             if(issues) return;
             $('#addOrder').attr('disabled', true); 
-            if(gameName === 'MLBBD_PH' && Number($('#diamonds').attr('type')) === 1) {
+            if(gameName === 'MLBBD_PH' && Number($('#diamonds option').filter(':selected').attr('type')) === 1) {
                 diamondsGame = $('#diamonds').val();
                 diamondsGame = diamondsGame.split('-');
                 var i = 0;
                 for(var d of diamondsGame) {
-                    
-                    var settings = {
-                        "url": `${host}/admin/user/validate${strRequest}`,
-                        "method": "POST",
-                        "timeout": 0,
-                    };
-
-                    $.ajax(settings).done(function (response) {
-                    //alert('1');
-                        if(response.status === false) {
-                            $('#error_full').text(response.errors.message);
-                        } else {
-                            //alert('2');
-                            //console.log(response.validationToken)
-                            $('#error_full').text();
-                            var settings = {
-                                "url": `${host}/admin/order/create?gameCode=${gameName}&validationToken=${response.validationToken}&denominationId=${d}`,
-                                "method": "POST",
-                                "timeout": 0,
-                            };
-
-                            $.ajax(settings).done(function (response) {
-                                
-                                if(response.status === false) {
-                                // alert('3');
-                                    $('#error_full').text(response.errors.message, 'order number', i);
-                                } else {
-                                //  alert('4');
-                                    $('#error_full').text('Success Order number:', i);
-                                    $('#userId').val('');
-                                    $('#zoneId').val('');
-                                   // window.location.reload();
-                                }
-                                i++;
-                                sleep(500);
-                            })
-                        }
-                        //console.log(response);
-                    }); 
+                    console.log(d)
+                    const responsesendRequestAddDiamondsMobileLegendsDiamondsGame = await sendRequestAddDiamondsMobileLegendsDiamondsGame({
+                        strRequest,
+                        gameName,
+                        denominationId: d,
+                        index: i
+                    });
+                    if(responsesendRequestAddDiamondsMobileLegendsDiamondsGame.status !== true) {
+                        alert('حدث خطأ ما تواصل مع المطور من فضلك');
+                    }
+                    i++;
+                    sleep(500);
                 }
                 window.location.reload();
             } else {
@@ -518,12 +527,9 @@
                 };
 
                 $.ajax(settings).done(function (response) {
-                //alert('1');
                     if(response.status === false) {
                         $('#error_full').text(response.errors.message);
                     } else {
-                        //alert('2');
-                        //console.log(response.validationToken)
                         $('#error_full').text();
                         var settings = {
                             "url": `${host}/admin/order/create?gameCode=${gameName}&validationToken=${response.validationToken}&denominationId=${diamondsGame}`,
@@ -533,10 +539,8 @@
 
                         $.ajax(settings).done(function (response) {
                             if(response.status === false) {
-                            // alert('3');
                                 $('#error_full').text(response.errors.message);
                             } else {
-                            //  alert('4');
                                 $('#error_full').text('Success');
                                 $('#userId').val('');
                                 $('#zoneId').val('');
@@ -544,7 +548,6 @@
                             }
                         })
                     }
-                    //console.log(response);
                 });
             }
 
